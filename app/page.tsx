@@ -231,6 +231,7 @@ export default function Home() {
         <SelectedItemsSummary
           selectedItems={selectedItems}
           dailyRateTotal={dailyRateTotal}
+          onRemoveItem={handleSelectItem}
         />
       </main>
     </div>

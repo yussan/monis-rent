@@ -74,7 +74,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               <div
                 className={`transition-all duration-300 ${
                   hasTable
-                    ? "absolute left-1/2 -translate-x-1/2 top-[4%] z-10 pointer-events-none"
+                    ? "absolute left-1/2 -translate-x-1/2 top-[5%] z-10 pointer-events-none"
                     : "relative z-10 flex items-end justify-center mb-2"
                 }`}
               >
