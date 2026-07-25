@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import PreviewCanvas from "@/components/PreviewCanvas";
 import SelectedItemsSummary from "@/components/SelectedItemsSummary";
 import { CategoryGroup, RentalItem } from "@/components/types";
+
+// Key for localStorage
+const LOCAL_STORAGE_KEY = "monis_selected_items";
 
 // Dummy rental categories
 const RENTAL_CATEGORY: CategoryGroup[] = [
@@ -28,7 +31,15 @@ const RENTAL_CATEGORY: CategoryGroup[] = [
     id: "coffee-stations",
     label: "Coffee Stations",
   },
-   {
+  {
+    id: "plants",
+    label: "Plants",
+  },
+  {
+    id: "lighting",
+    label: "Lighting",
+  },
+  {
     id: "decorations",
     label: "Decorations",
   },
@@ -60,14 +71,14 @@ const RENTAL_ITEMS: RentalItem[] = [
     material: "Wood and Fabric",
     availableStock: 10,
   },
-   {
-    id: "decoration-001",
-    group_id: "decorations",
-    name: "Vase with tulips and roses",
+  {
+    id: "plant-001",
+    group_id: "plants",
+    name: "Tulip with Rose Flower",
     pricePerDay: 5,
-    imagePrev: "/images/rents/decoration-001/preview.png",
-    imageThumb: "/images/rents/decoration-001/preview.png",
-    description: "Vase with tulips and roses",
+    imagePrev: "/images/rents/plant-001/preview.png",
+    imageThumb: "/images/rents/plant-001/preview.png",
+    description: "Beautiful tulip plant for your event",
     material: "Wood and Fabric",
     availableStock: 10,
   },
@@ -81,11 +92,54 @@ const RENTAL_ITEMS: RentalItem[] = [
     description: "Retina display 5k, Dual Core i5, 8GB RAM, 256GB SSD",
     availableStock: 10,
   },
+  {
+    id: "chair-001",
+    group_id: "chairs",
+    name: "Office Chair",
+    pricePerDay: 15,
+    imagePrev: "/images/rents/chair-001/preview.png",
+    imageThumb: "/images/rents/chair-001/preview.png",
+    description: "Ergonomic office chair for your event.",
+    availableStock: 10,
+  },
+   {
+    id: "chair-002",
+    group_id: "chairs",
+    name: "Office Chair 2",
+    pricePerDay: 15,
+    imagePrev: "/images/rents/chair-002/preview.png",
+    imageThumb: "/images/rents/chair-002/preview.png",
+    description: "Ergonomic office chair for your event.",
+    availableStock: 10,
+  },
 ];
 
 export default function Home() {
   const [openGroup, setOpenGroup] = useState<string | null>("tables");
-  const [selectedItems, setSelectedItems] = useState<RentalItem[]>([RENTAL_ITEMS[0]]);
+  const [selectedItems, setSelectedItems] = useState<RentalItem[]>(() => {
+    if (typeof window === "undefined") return [RENTAL_ITEMS[0]];
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load selected items from localStorage:", err);
+    }
+    return [RENTAL_ITEMS[0]];
+  });
+
+  // Save selected items to localStorage whenever selectedItems changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(selectedItems));
+    } catch (err) {
+      console.error("Failed to save selected items to localStorage:", err);
+    }
+  }, [selectedItems]);
 
   const toggleGroup = (groupId: string) => {
     setOpenGroup((prev) => (prev === groupId ? null : groupId));
@@ -103,7 +157,10 @@ export default function Home() {
     });
   };
 
-  const dailyRateTotal = selectedItems.reduce((acc, item) => acc + item.pricePerDay, 0);
+  const dailyRateTotal = selectedItems.reduce(
+    (acc, item) => acc + item.pricePerDay,
+    0,
+  );
 
   return (
     <div className="flex min-h-screen bg-white text-black font-sans">
