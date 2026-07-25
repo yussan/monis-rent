@@ -50,7 +50,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
       {/* Canvas Container */}
       <div className="w-full min-h-[480px] border border-gray-200 rounded-xl p-6 pb-2 bg-gradient-to-b from-gray-50 to-gray-100 flex items-end justify-center relative overflow-hidden shadow-inner">
         {selectedItems.length > 0 ? (
-          <div className="relative w-full h-[420px] flex items-end justify-center pb-1">
+          <div className="relative w-[800px] h-[420px] flex items-end justify-center pb-1">
             {/* Ground / Floor Shadow effect for realistic setup presentation */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] h-8 bg-black/10 blur-xl rounded-full pointer-events-none" />
 
