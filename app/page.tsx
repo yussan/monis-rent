@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import PreviewCanvas from "@/components/PreviewCanvas";
 import SelectedItemsSummary from "@/components/SelectedItemsSummary";
+import DesktopOnlyAlert from "@/components/DesktopOnlyAlert";
 import { CategoryGroup, RentalItem } from "@/components/types";
 
 // Key for localStorage
@@ -205,6 +206,8 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen bg-white text-black font-sans">
+      <DesktopOnlyAlert />
+
       {/* Sidebar Component */}
       <Sidebar
         categories={RENTAL_CATEGORY}
