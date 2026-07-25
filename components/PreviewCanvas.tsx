@@ -48,7 +48,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
       </header>
 
       {/* Canvas Container */}
-      <div className="w-full min-h-[480px] border border-gray-200 rounded-xl p-6 pb-2 bg-gradient-to-b from-gray-50 to-gray-100 flex items-end justify-center relative overflow-hidden shadow-inner">
+      <div className={`${selectedItems.length === 0 ? "items-center" : "items-end"} w-full min-h-[480px] border border-gray-200 rounded-xl p-6 pb-2 bg-gradient-to-b from-gray-50 to-gray-100 flex  justify-center relative overflow-hidden shadow-inner`}>
         {selectedItems.length > 0 ? (
           <div className="relative w-[800px] h-[420px] flex items-end justify-center pb-1">
             {/* Ground / Floor Shadow effect for realistic setup presentation */}
@@ -124,9 +124,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               <div
                 className={`transition-all duration-300 ${
                   hasTable
-                    ? computerItem
-                      ? "absolute left-[23%] top-[23%] z-20 pointer-events-none"
-                      : "absolute left-1/2 -translate-x-1/2 bottom-[44%] z-20 pointer-events-none"
+                    ? "absolute left-[23%] top-[23%] z-20 pointer-events-none"
                     : "relative z-10 flex items-end justify-center mb-2"
                 }`}
               >
