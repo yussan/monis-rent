@@ -17,10 +17,7 @@ export default function SelectedItemsSummary({
         <h3 className="font-semibold text-base text-black">
           Selected Setup Items ({selectedItems.length})
         </h3>
-        <div className="text-right">
-          <span className="text-xs text-gray-500 block">Total Price per Day</span>
-          <span className="text-lg font-bold text-black">${dailyRateTotal} / day</span>
-        </div>
+        
       </div>
 
       {/* List Preview Grid */}
