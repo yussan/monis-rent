@@ -23,14 +23,14 @@ const RENTAL_CATEGORY: CategoryGroup[] = [
     id: "computer",
     label: "Computer",
   },
-  {
-    id: "relax-zones",
-    label: "Relax Zones",
-  },
-  {
-    id: "coffee-stations",
-    label: "Coffee Stations",
-  },
+  // {
+  //   id: "relax-zones",
+  //   label: "Relax Zones",
+  // },
+  // {
+  //   id: "coffee-stations",
+  //   label: "Coffee Stations",
+  // },
   {
     id: "plants",
     label: "Plants",
@@ -83,13 +83,34 @@ const RENTAL_ITEMS: RentalItem[] = [
     availableStock: 10,
   },
   {
+    id: "plant-002",
+    group_id: "plants",
+    name: "Small Cactus Plant",
+    pricePerDay: 5,
+    imagePrev: "/images/rents/plant-002/preview.png",
+    imageThumb: "/images/rents/plant-002/preview.png",
+    description: "A small and easy-to-maintain cactus plant for your event",
+    material: "Wood and Fabric",
+    availableStock: 10,
+  },
+  // {
+  //   id: "computer-001",
+  //   group_id: "computer",
+  //   name: "iMac 27 inc Retina 5K + keyboard + mouse",
+  //   pricePerDay: 50,
+  //   imagePrev: "/images/rents/computer-001/preview.png",
+  //   imageThumb: "/images/rents/computer-001/preview.png",
+  //   description: "Retina display 5k, Dual Core i5, 8GB RAM, 256GB SSD",
+  //   availableStock: 10,
+  // },
+  {
     id: "computer-001",
     group_id: "computer",
-    name: "iMac 27 inc Retina 5K + keyboard + mouse",
+    name: "Macbook Pro 13 inc Retina",
     pricePerDay: 50,
-    imagePrev: "/images/rents/computer-001/preview.png",
-    imageThumb: "/images/rents/computer-001/preview.png",
-    description: "Retina display 5k, Dual Core i5, 8GB RAM, 256GB SSD",
+    imagePrev: "/images/rents/computer-002/preview.png",
+    imageThumb: "/images/rents/computer-002/preview.png",
+    description: "Retina display 2k, Dual Core i5, 8GB RAM, 256GB SSD",
     availableStock: 10,
   },
   {
@@ -102,7 +123,7 @@ const RENTAL_ITEMS: RentalItem[] = [
     description: "Ergonomic office chair for your event.",
     availableStock: 10,
   },
-   {
+  {
     id: "chair-002",
     group_id: "chairs",
     name: "Office Chair 2",
@@ -112,6 +133,26 @@ const RENTAL_ITEMS: RentalItem[] = [
     description: "Ergonomic office chair for your event.",
     availableStock: 10,
   },
+  {
+    id: "light-001",
+    group_id: "lighting",
+    name: "Office Lighting",
+    pricePerDay: 15,
+    imagePrev: "/images/rents/light-001/preview.png",
+    imageThumb: "/images/rents/light-001/preview.png",
+    description: "Minimalist but super bright lighting for your desk.",
+    availableStock: 10,
+  },
+  {
+    id: "decoration-001",
+    group_id: "decorations",
+    name: "Digital Clocks",
+    pricePerDay: 5,
+    imagePrev: "/images/rents/decoration-001/preview.png",
+    imageThumb: "/images/rents/decoration-001/preview.png",
+    description: "Digital clocks for your event, easy to read and stylish.",
+    availableStock: 10,
+  }
 ];
 
 export default function Home() {

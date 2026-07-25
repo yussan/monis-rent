@@ -13,6 +13,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
     (i) => i.group_id === "decorations" || i.group_id === "coffee-stations",
   );
   const plantItem = selectedItems.find((i) => i.group_id === "plants");
+  const lightingItem = selectedItems.find((i) => i.group_id === "lighting");
   const chairItem = selectedItems.find((i) => i.group_id === "chairs");
   const relaxItem = selectedItems.find((i) => i.group_id === "relax-zones");
   const computerItem = selectedItems.find((i) => i.group_id === "computer");
@@ -25,6 +26,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
       tableItem?.id,
       decorItem?.id,
       plantItem?.id,
+      lightingItem?.id,
       chairItem?.id,
       relaxItem?.id,
       computerItem?.id,
@@ -72,7 +74,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               <div
                 className={`transition-all duration-300 ${
                   hasTable
-                    ? "absolute left-1/2 -translate-x-1/2 bottom-[44%] z-20 pointer-events-none"
+                    ? "absolute left-1/2 -translate-x-1/2 top-[4%] z-10 pointer-events-none"
                     : "relative z-10 flex items-end justify-center mb-2"
                 }`}
               >
@@ -82,7 +84,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
                   alt={computerItem.name}
                   className={`${
                     hasTable
-                      ? "h-44 md:h-48 object-contain drop-shadow-xl"
+                      ? "h-35 object-contain drop-shadow-xl"
                       : "h-64 max-h-[280px] object-contain drop-shadow-xl"
                   }`}
                   onError={(e) => {
@@ -92,13 +94,38 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               </div>
             )}
 
-            {/* 3. DECORATION / TABLETOP ITEM */}
+            {/* 3. LIGHTING ITEM (Desk Lamp placed on table) */}
+            {lightingItem && (
+              <div
+                className={`transition-all duration-300 ${
+                  hasTable
+                    ? "absolute left-[65%] top-[-11%] -translate-x-1/2 z-99 pointer-events-none"
+                    : "relative z-10 flex items-end justify-center mb-2"
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={lightingItem.imagePrev}
+                  alt={lightingItem.name}
+                  className={`${
+                    hasTable
+                      ? "h-[210px] object-contain drop-shadow-xl"
+                      : "h-64 max-h-[280px] object-contain drop-shadow-xl"
+                  }`}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
+            )}
+
+            {/* 4. DECORATION / TABLETOP ITEM */}
             {decorItem && (
               <div
                 className={`transition-all duration-300 ${
                   hasTable
                     ? computerItem
-                      ? "absolute left-[35%] bottom-[44%] z-20 pointer-events-none"
+                      ? "absolute left-[23%] top-[23%] z-20 pointer-events-none"
                       : "absolute left-1/2 -translate-x-1/2 bottom-[44%] z-20 pointer-events-none"
                     : "relative z-10 flex items-end justify-center mb-2"
                 }`}
@@ -109,7 +136,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
                   alt={decorItem.name}
                   className={`${
                     hasTable
-                      ? "h-[118px] object-contain drop-shadow-xl"
+                      ? "h-[60px] object-contain drop-shadow-xl"
                       : "h-64 max-h-[280px] object-contain drop-shadow-xl"
                   }`}
                   onError={(e) => {
@@ -119,12 +146,12 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               </div>
             )}
 
-            {/* 4. PLANT ITEM */}
+            {/* 5. PLANT ITEM */}
             {plantItem && (
               <div
                 className={`transition-all duration-300 ${
                   hasTable
-                    ? "absolute left-[70%] -translate-x-1/2 bottom-[63%] z-20 pointer-events-none"
+                    ? "absolute left-[73%] -translate-x-1/2 bottom-[63.5%] z-20 pointer-events-none"
                     : "relative z-10 flex items-end justify-center mb-2"
                 }`}
               >
@@ -144,12 +171,12 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               </div>
             )}
 
-            {/* 5. CHAIR ITEM */}
+            {/* 6. CHAIR ITEM */}
             {chairItem && (
               <div
                 className={`transition-all duration-300 ${
                   hasTable
-                    ? "absolute left-[28%] bottom-1 z-15"
+                    ? "absolute left-[35.5%] bottom-[-3%] z-15"
                     : "relative z-10 flex items-end justify-center"
                 }`}
               >
@@ -165,7 +192,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               </div>
             )}
 
-            {/* 6. RELAX ZONE ITEM */}
+            {/* 7. RELAX ZONE ITEM */}
             {relaxItem && (
               <div
                 className={`transition-all duration-300 ${
@@ -190,7 +217,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
               </div>
             )}
 
-            {/* 7. OTHER SELECTED ITEMS */}
+            {/* 8. OTHER SELECTED ITEMS */}
             {otherItems.map((item) => (
               <div
                 key={item.id}
@@ -212,6 +239,7 @@ export default function PreviewCanvas({ selectedItems }: PreviewCanvasProps) {
             {!hasTable &&
               !decorItem &&
               !plantItem &&
+              !lightingItem &&
               !chairItem &&
               !relaxItem &&
               !computerItem && (
